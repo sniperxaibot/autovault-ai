@@ -15,7 +15,7 @@
     "@solana/wallet-adapter-wallets": "^0.19.32",
     "@solana/web3.js": "^1.95.4",
     "@jup-ag/api": "^6.0.0",
-    "next": "15.0.4",
+    "next": "^15.0.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "lucide-react": "^0.441.0",
