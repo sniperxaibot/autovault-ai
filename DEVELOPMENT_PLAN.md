@@ -14,7 +14,7 @@ This is the living notebook for AutoVault AI (AV.AI). Every update to the codeba
 - [x] Live portfolio balance fetcher using web3.js
 - [x] Background agent loop scaffold (API + Vercel cron ready)
 
-## Phase 2: Autonomous AI Brain (Week 1)
+## Phase 2: Autonomous AI Brain (Week 1) → IN PROGRESS
 - [ ] pay.sh + x402 for live LLM calls
 - [ ] Prompt → multi-step strategy engine
 - [ ] Background autonomous loops (cron/webhooks)
@@ -42,5 +42,6 @@ This is the living notebook for AutoVault AI (AV.AI). Every update to the codeba
 ## Progress Log
 - **2026-05-16 22:10 EEST** – Phase 0 complete (initial MVP)
 - **2026-05-16 22:20 EEST** – Phase 1 COMPLETE: Real onchain layer (Jupiter, Drift/Raydium hooks, portfolio, loop) + notebook created and pushed.
+- **2026-05-16 23:05 EEST** – Phase 2 STARTED: Autonomous AI Brain initiated. pay.sh + x402 integration + Prompt → multi-step strategy engine added. Background loops scaffold updated.
 
-**Current phase: Phase 1 FINISHED. Ready for Phase 2 command.**
+**Current phase: Phase 2 IN PROGRESS. Next: complete pay.sh and background loops.**
