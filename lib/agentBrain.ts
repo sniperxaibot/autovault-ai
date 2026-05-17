@@ -58,7 +58,7 @@ export async function runAutonomousLoop(agentId: string, ownerPubkey: string) {
   const strategy = await generateAutonomousStrategy(prompt, risk, ownerPubkey);
 
   // Execute onchain
-  const result = await executeStrategy(strategy.actions, ownerPubkey); // updated call
+  const result = await executeStrategy(prompt, risk, null, ownerPubkey);
 
   console.log(`✅ Autonomous execution complete for agent ${agentId}:`, result);
   return result;
