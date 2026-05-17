@@ -38,3 +38,29 @@ export async function escrowSafetyRail(amount: number, userPubkey: string): Prom
 }
 
 export const EMERGENCY_PAUSE = false; // toggle this to pause all agents globally
+
+export async function checkSafety(prompt: string, riskProfile: string): Promise<{ safe: boolean; message: string; score: number }> {
+  // Emergency pause check
+  if (EMERGENCY_PAUSE) {
+    return { safe: false, message: 'All agents are currently paused', score: 100 };
+  }
+
+  // Basic prompt safety validation
+  const dangerousKeywords = ['rug', 'drain', 'exploit', 'hack'];
+  const lowerPrompt = prompt.toLowerCase();
+  for (const keyword of dangerousKeywords) {
+    if (lowerPrompt.includes(keyword)) {
+      return { safe: false, message: `Prompt contains dangerous keyword: ${keyword}`, score: 90 };
+    }
+  }
+
+  // Risk profile scoring
+  const riskScores: Record<string, number> = { conservative: 10, moderate: 30, aggressive: 60 };
+  const score = riskScores[riskProfile.toLowerCase()] ?? 50;
+
+  if (score > 80) {
+    return { safe: false, message: 'Risk profile exceeds safety threshold', score };
+  }
+
+  return { safe: true, message: 'Safety check passed', score };
+}
