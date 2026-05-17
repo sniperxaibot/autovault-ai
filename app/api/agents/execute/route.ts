@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     const strategy = await runAutonomousLoop(prompt, riskProfile);
 
     // 3. Real onchain execution (Phase 1)
-    const executionResult = await executeStrategy(strategy, owner);
+    const executionResult = await executeStrategy(prompt, riskProfile, null, owner);
 
     return NextResponse.json({
       success: true,
