@@ -21,9 +21,10 @@ export default function AgentCreator() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          agentId: `av-${Date.now()}`,
           prompt,
           riskProfile: risk,
-          publicKey: publicKey.toString()
+          owner: publicKey.toString()
         })
       });
       const data = await res.json();

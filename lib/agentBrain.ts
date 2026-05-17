@@ -50,17 +50,15 @@ export async function generateAutonomousStrategy(agentPrompt: string, riskProfil
 }
 
 // Background autonomous loop (now fully production-ready for Vercel cron / webhook)
-export async function runAutonomousLoop(agentId: string, ownerPubkey: string) {
-  console.log(`🚀 Starting autonomous loop for agent ${agentId}`);
-  const prompt = 'Maximize stablecoin yield while hedging SOL volatility'; // load from DB in prod
-  const risk = 'balanced';
+export async function runAutonomousLoop(prompt: string, riskProfile: string, ownerPubkey?: string) {
+  console.log(`🚀 Starting autonomous loop for prompt: "${prompt}" (risk: ${riskProfile})`);
 
-  const strategy = await generateAutonomousStrategy(prompt, risk, ownerPubkey);
+  const strategy = await generateAutonomousStrategy(prompt, riskProfile, ownerPubkey || '');
 
   // Execute onchain
-  const result = await executeStrategy(prompt, risk, null, ownerPubkey);
+  const result = await executeStrategy(prompt, riskProfile, null, ownerPubkey || '');
 
-  console.log(`✅ Autonomous execution complete for agent ${agentId}:`, result);
+  console.log(`✅ Autonomous execution complete:`, result);
   return result;
 }
 

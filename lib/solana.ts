@@ -40,6 +40,17 @@ export async function executeRaydiumLP(tokenA: string, tokenB: string, amount: n
 
 export async function executeStrategy(prompt: string, riskProfile: string, wallet: any, publicKey: string) {
   console.log('🚀 Real onchain strategy execution:', prompt);
+
+  // Wallet-required actions: return a safe simulation response when no wallet is connected
+  if (!wallet) {
+    console.warn('⚠️ No wallet provided — running in simulation mode');
+    if (publicKey) {
+      const portfolio = await getPortfolio(publicKey);
+      return { success: true, action: 'simulation', simulated: true, portfolio };
+    }
+    return { success: true, action: 'simulation', simulated: true, portfolio: null };
+  }
+
   if (prompt.includes('swap') || prompt.includes('Swap')) {
     return await executeJupiterSwap('So11111111111111111111111111111111111111112', 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', 500000000, wallet); // 0.5 SOL -> USDC
   } else if (prompt.includes('lend') || prompt.includes('Lend')) {
